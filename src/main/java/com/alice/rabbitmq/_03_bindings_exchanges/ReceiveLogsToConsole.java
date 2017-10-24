@@ -5,13 +5,11 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;  
 import com.rabbitmq.client.QueueingConsumer;  
   
-public class ReceiveLogsToConsole  
-{  
+public class ReceiveLogsToConsole {
     private final static String EXCHANGE_NAME = "ex_log";  
   
     public static void main(String[] argv) throws java.io.IOException,  
-            java.lang.InterruptedException  
-    {  
+            java.lang.InterruptedException {
         // 创建连接和频道  
         ConnectionFactory factory = new ConnectionFactory();  
         factory.setHost("localhost");  
@@ -30,8 +28,7 @@ public class ReceiveLogsToConsole
         // 指定接收者，第二个参数为自动应答，无需手动应答  
         channel.basicConsume(queueName, true, consumer);  
   
-        while (true)  
-        {  
+        while (true) {  
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();  
             String message = new String(delivery.getBody());  
             System.out.println(" [x] Received '" + message + "'");  

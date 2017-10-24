@@ -10,7 +10,7 @@ public class Work {
 	private final static String QUEUE_NAME = "workqueue";
 	
 	public static void main(String[] argv) throws java.io.IOException, 
-		java.lang.InterruptedException {
+    		java.lang.InterruptedException {
 		//区分不同工作进程的输出  
 		int hashCode = Work.class.hashCode();  
 		//创建连接和频道  

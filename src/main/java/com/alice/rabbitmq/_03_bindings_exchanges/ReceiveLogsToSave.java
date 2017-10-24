@@ -16,8 +16,7 @@ public class ReceiveLogsToSave {
     private final static String EXCHANGE_NAME = "ex_log";  
   
     public static void main(String[] argv) throws java.io.IOException,  
-            java.lang.InterruptedException  
-    {  
+            java.lang.InterruptedException {  
         // 创建连接和频道  
         ConnectionFactory factory = new ConnectionFactory();  
         factory.setHost("localhost");  
@@ -36,8 +35,7 @@ public class ReceiveLogsToSave {
         // 指定接收者，第二个参数为自动应答，无需手动应答  
         channel.basicConsume(queueName, true, consumer);  
   
-        while (true)  
-        {  
+        while (true) {  
             QueueingConsumer.Delivery delivery = consumer.nextDelivery();  
             String message = new String(delivery.getBody());  
   
@@ -46,10 +44,8 @@ public class ReceiveLogsToSave {
   
     }  
   
-    private static void print2File(String msg)  
-    {  
-        try  
-        {  
+    private static void print2File(String msg) {  
+        try {  
             String dir = ReceiveLogsToSave.class.getClassLoader().getResource("").getPath();  
             String logFileName = new SimpleDateFormat("yyyy-MM-dd")  
                     .format(new Date());  
@@ -58,11 +54,9 @@ public class ReceiveLogsToSave {
             fos.write((msg + "\r\n").getBytes());  
             fos.flush();  
             fos.close();  
-        } catch (FileNotFoundException e)  
-        {  
+        } catch (FileNotFoundException e) {  
             e.printStackTrace();  
-        } catch (IOException e)  
-        {  
+        } catch (IOException e) {  
             e.printStackTrace();  
         }  
     }  

@@ -18,26 +18,25 @@ public class NewTask {
 
     public static void main(String[] args) throws IOException {
         //创建连接和频道
-        ConnectionFactory factory = new ConnectionFactory();  
+        ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
-        Connection connection = factory.newConnection();  
-        Channel channel = connection.createChannel();  
+        Connection connection = factory.newConnection();
+        Channel channel = connection.createChannel();
         //声明队列
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         //发送10条消息，依次在消息后面附加1-10个点
-        for (int i = 0; i < 10; i++) {  
+        for (int i = 0; i < 10; i++) {
             String dots = "";
             for (int j = 0; j <= i; j++) {
-                dots += ".";  
-            }  
+                dots += ".";
+            }
             String message = "helloworld" + dots+dots.length();
-            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());  
+            channel.basicPublish("", QUEUE_NAME, null, message.getBytes());
             System.out.println(" [x] Sent '" + message + "'");
-        }  
-        //关闭频道和资源  
-        channel.close();  
-        connection.close();  
-  
-    }  
-  
-}  
+        }
+        //关闭频道和资源
+        channel.close();
+        connection.close();
+    }
+
+}
